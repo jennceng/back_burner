@@ -31,8 +31,7 @@ feature "an authenticated Chef can edit their account information" do
   scenario "authenticated Chef successfully edits their account information" do
     click_on "Update Information"
 
-    fill_in "Password", with: "eh"
-    fill_in "Password confirmation", with: "eh"
+    fill_in "First Name", with: "Miguel"
     fill_in "Current password", with: chef.password
     click_on "Update"
 
