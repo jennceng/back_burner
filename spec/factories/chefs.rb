@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :chef do
     first_name "Dan"
     last_name "Taft"
-    restaurant_name "Poutine for Dayz"
+    sequence(:restaurant_name) { |n| "Poutine for Dayz #{n}" }
     address "33 Harrison Avenue"
     city "Boston"
     state "MA"
