@@ -4,5 +4,5 @@ BackBurner::Application.routes.draw do
 
   root "welcome#index"
 
-  resources :posts, only: [:index, :create]
+  resources :posts, only: [:index, :create, :edit, :update]
 end
