@@ -14,11 +14,9 @@ require "rails_helper"
 
 feature "an authenticated Chef can edit their account information" do
   let!(:chef) { FactoryGirl.create(:chef) }
-  before(:each) do
-    login_as_chef(chef)
-  end
 
   scenario "authenticated Chef successfully edits their account information" do
+    login_as_chef(chef)
     click_on "Update Information"
 
     fill_in "First Name", with: "JLaw"
@@ -29,9 +27,11 @@ feature "an authenticated Chef can edit their account information" do
   end
 
   scenario "authenticated Chef successfully edits their account information" do
+    login_as_chef(chef)
     click_on "Update Information"
 
-    fill_in "First Name", with: "Miguel"
+    fill_in "Password", with: "a"
+    fill_in "Password confirmation", with: "a"
     fill_in "Current password", with: chef.password
     click_on "Update"
 
