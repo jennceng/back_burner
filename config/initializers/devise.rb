@@ -4,7 +4,7 @@ Devise.setup do |config|
   config.warden do |manager|
     manager.failure_app = CustomFailure
   end
-  
+
   config.scoped_views = true
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -269,31 +269,30 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
 
-module Devise
-  module Strategies
-    class Base
-      def mapping
-        # @mapping ||= begin
+  module Devise
+    module Strategies
+      class Base
+        def mapping
+          # @mapping ||= begin
           mapping = Devise.mappings[scope]
           raise "Could not find mapping for #{scope}" unless mapping
           mapping
-        # end
+          # end
+        end
       end
     end
   end
-end
 
-class CustomFailure < Devise::FailureApp
-  def redirect_url
-     root_path
-  end
-
-  # You need to override respond to eliminate recall
-  def respond
-    if http_auth?
-      http_auth
-    else
-      redirect
+  class CustomFailure < Devise::FailureApp
+    def redirect_url
+      root_path
     end
-  end
+  # You need to override respond to eliminate recall
+    def respond
+      if http_auth?
+        http_auth
+      else
+        redirect
+      end
+    end
 end

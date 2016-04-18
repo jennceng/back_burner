@@ -20,7 +20,6 @@ feature "a prospective head chef can sign up for a new Chef account" do
     within(".cook") do
       click_on("Sign Up")
     end
-    save_and_open_page
 
     fill_in "First Name", with: "Miguel"
     fill_in "Last Name", with: "Cua"

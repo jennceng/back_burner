@@ -1,6 +1,5 @@
 class SessionsController < Devise::SessionsController
   def create
-    binding.pry
     if current_chef.nil?
     # try to authenticate as a User
       self.resource = warden.authenticate(auth_options)
