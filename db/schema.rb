@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417193443) do
+ActiveRecord::Schema.define(version: 20160418165139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,5 +42,18 @@ ActiveRecord::Schema.define(version: 20160417193443) do
 
   add_index "chefs", ["email"], name: "index_chefs_on_email", unique: true, using: :btree
   add_index "chefs", ["reset_password_token"], name: "index_chefs_on_reset_password_token", unique: true, using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "chef_id",                    null: false
+    t.integer  "cook_id"
+    t.string   "date",                       null: false
+    t.string   "start_time",                 null: false
+    t.string   "end_time",                   null: false
+    t.string   "wage",                       null: false
+    t.string   "description"
+    t.boolean  "open",        default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

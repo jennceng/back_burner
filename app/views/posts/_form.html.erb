@@ -1,0 +1,31 @@
+<%= form_for(@post) do |f| %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.text_field :date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time, "Start Time"%><br />
+    <%= f.text_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time, "End Time"%><br />
+    <%= f.text_field :end_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wage, "Hourly Wage" %><br />
+    <%= f.text_field :wage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
