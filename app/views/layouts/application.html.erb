@@ -3,24 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
+    <title><%= content_for?(:title) ? yield(:title) : "SoTi" %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
-    <div>
-      <% flash.each do |name, msg| %>
-        <% if msg.is_a?(String) %>
-          <%= content_tag :div, msg, :class => "flash_#{name}" %>
-        <% end %>
+    <% if chef_signed_in? %>
+        <%= link_to "Update Information", edit_chef_registration_path %>
+        <%= link_to "Sign Out", destroy_chef_session_path, method: :delete %>
+    <% end %>
+  <div>
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <%= content_tag :div, msg, :class => "flash_#{name}" %>
       <% end %>
+    <% end %>
+  </div>
+    <div class="small-10 columns small-centered" id="interior">
+      <%= yield %>
     </div>
-
-    <%= yield %>
-
+  </div>
+</div>
   </body>
 </html>
