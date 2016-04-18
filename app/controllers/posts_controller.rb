@@ -17,6 +17,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:notice] = "Job post successfully updated!"
+      redirect_to posts_path
+    else
+      flash[:error] = @post.errors.full_messages.join(", ")
+      render :edit
+    end
+  end
+
   private
 
   def post_params

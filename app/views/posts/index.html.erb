@@ -13,6 +13,9 @@
     <% else %>
       <%= post.description %>
     <% end %>
+  <% if post.chef == current_chef %>
+    <%= button_to "Update Post", edit_post_path(post), method: :get %>
+  <% end %>
 <% end %>
 
 <% if chef_signed_in? %>
