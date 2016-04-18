@@ -3,10 +3,10 @@ Coveralls.wear!('rails')
 
 RSpec.configure do |config|
 
-  def login_as_chef(chef)
-    visit "/chefs/sign_in"
-    fill_in "Email", with: chef.email
-    fill_in "Password", with: chef.password
+  def login(user)
+    visit root_path
+    fill_in "E-mail", with: user.email
+    fill_in "Password", with: user.password
     click_on "Log in"
   end
 

@@ -1,6 +1,5 @@
 require "rails_helper"
 
-
   # As an authenticated Chef
   # I can create a new job posting
   # So that I can find a cook to fill a shift
@@ -23,7 +22,7 @@ feature "an authenticated chef can create a new job post" do
   let!(:chef) { FactoryGirl.create(:chef) }
   context "an authenticated chef can submit a new job post form" do
     before(:each) do
-      login_as_chef(chef)
+      login(chef)
     end
 
     scenario "successfully creates a new job post" do
@@ -56,14 +55,14 @@ feature "an authenticated chef can create a new job post" do
     end
   end
 
-  pending "an authenticated cook cannot submit a new job post" do
-    scenario "authenticated cook cannot submit a new job post" do
-      cook = FactoryGirl.create(:cook)
-      login_as_cook(cook)
-
-      expect(page).to_not have_button("Create Post")
-    end
-  end
+  # context "an authenticated cook cannot submit a new job post" do
+  #   scenario "authenticated cook cannot submit a new job post" do
+  #     cook = FactoryGirl.create(:cook)
+  #     login_as_cook(cook)
+  #
+  #     expect(page).to_not have_button("Create Post")
+  #   end
+  # end
 
   context "an unauthenticated user cannot submit a new job post" do
     scenario "unauthenticated user cannot submit a new job post" do
