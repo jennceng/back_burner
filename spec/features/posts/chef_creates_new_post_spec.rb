@@ -55,14 +55,14 @@ feature "an authenticated chef can create a new job post" do
     end
   end
 
-  # context "an authenticated cook cannot submit a new job post" do
-  #   scenario "authenticated cook cannot submit a new job post" do
-  #     cook = FactoryGirl.create(:cook)
-  #     login_as_cook(cook)
-  #
-  #     expect(page).to_not have_button("Create Post")
-  #   end
-  # end
+  context "an authenticated cook cannot submit a new job post" do
+    scenario "authenticated cook cannot submit a new job post" do
+      cook = FactoryGirl.create(:cook)
+      login(cook)
+
+      expect(page).to_not have_button("Create Post")
+    end
+  end
 
   context "an unauthenticated user cannot submit a new job post" do
     scenario "unauthenticated user cannot submit a new job post" do
