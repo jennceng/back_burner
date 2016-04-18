@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_chef!, only: [:create]
 
   def index
     @posts = Post.all
@@ -7,13 +8,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # @post.chef = current_chef
     if @post.save
       flash[:success] = "New job post created!"
       redirect_to posts_path
     else
       flash[:error] = @post.errors.full_messages.join(", ")
-      render :new
+      redirect_to posts_path(@post)
     end
   end
 
