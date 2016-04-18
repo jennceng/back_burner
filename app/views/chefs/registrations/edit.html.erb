@@ -4,6 +4,51 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :first_name, "First Name" %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name, "Last Name" %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number, "Cell Phone Number" %><br />
+    <%= f.text_field :phone_number, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :restaurant_name, "Restaurant Name" %><br />
+    <%= f.text_field :restaurant_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "Restaurant Address" %><br />
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "Brief Restaurant Description (optional)" %><br />
+    <%= f.text_area :description, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
