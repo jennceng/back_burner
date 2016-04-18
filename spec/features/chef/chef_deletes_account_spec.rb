@@ -15,13 +15,13 @@ feature "authenticated Chef deletes their account" do
 
   scenario "Chef successfully deletes account" do
     chef = FactoryGirl.create(:chef)
-    login_as_chef(chef)
+    login(chef)
     click_on "Update Information"
     click_button "Cancel my account"
 
     expect(page).to have_content "Bye! Your account has been successfully cancelled. We hope to see you again soon."
     expect(page).to have_content "Sign Up"
-    expect(page).to have_content "Log In"
+    expect(page).to have_button "Log in"
     expect(page).to_not have_content "Update Information"
   end
 
