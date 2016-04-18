@@ -4,15 +4,14 @@ require "rails_helper"
 # I want to create an account
 # So that I can post a job listing
 #
-#   Acceptance Criteria -
-#   Happy Path:
-#   [ ] On the home page under "I am a Chef", there is a link to Sign Up for a new Chef account
-#   [ ] I must provide a first name, last name, email, phone number, restaurant name, and restaurant address
-#   [ ] If I've entered valid information, I receive a message that my account has been successfully created
+# Acceptance Criteria -
+# Happy Path:
+# [ ] On the home page under "I am a Chef", there is a link to Sign Up for a new Chef account
+# [ ] I must provide a first name, last name, email, phone number, restaurant name, and restaurant address
+# [ ] If I've entered valid information, I receive a message that my account has been successfully created
 #
-#   Unhappy Path:
-#   [ ] If I did not provide valid credentials, for example if my email is already associated with an existing account, I receive an error message as to why my sign up failed, that I have failed to signed up, and I am still at my form that is pre-filled with what I have already tried to fill out
-
+# Unhappy Path:
+# [ ] If I did not provide valid credentials, for example if my email is already associated with an existing account, I receive an error message as to why my sign up failed, that I have failed to signed up, and I am still at my form that is pre-filled with what I have already tried to fill out
 
 feature "a prospective head chef can sign up for a new Chef account" do
   scenario "prospective Chef successfully creates new account" do

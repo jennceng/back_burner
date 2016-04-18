@@ -1,2 +1,20 @@
+<h1> Job Posts! </h1>
 
-<h1> heh?</h1>
+<% @posts.each do |post| %>
+  Restaurant: <%= post.chef.restaurant_name %>
+  Address: <%= post.chef.full_address %>
+  Date: <%= post.date %>
+  Start Time: <%= post.start_time %>
+  End Time: <%= post.end_time %>
+  Hourly Wage: <%= post.wage %>
+  Description:
+    <% if post.description.blank? %>
+      None Provided
+    <% else %>
+      <%= post.description %>
+    <% end %>
+<% end %>
+
+<% if chef_signed_in? %>
+  <%= render 'form' %>
+<% end %>
