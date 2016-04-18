@@ -1,6 +1,10 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
+  
   config.scoped_views = true
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -263,4 +267,33 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+end
+
+module Devise
+  module Strategies
+    class Base
+      def mapping
+        # @mapping ||= begin
+          mapping = Devise.mappings[scope]
+          raise "Could not find mapping for #{scope}" unless mapping
+          mapping
+        # end
+      end
+    end
+  end
+end
+
+class CustomFailure < Devise::FailureApp
+  def redirect_url
+     root_path
+  end
+
+  # You need to override respond to eliminate recall
+  def respond
+    if http_auth?
+      http_auth
+    else
+      redirect
+    end
+  end
 end

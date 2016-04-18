@@ -1,5 +1,17 @@
 <div class="chef">
   <h3>I am a Chef!</h3>
   <%= link_to "Sign Up", new_chef_registration_path%>
-  <%= link_to "Log In", new_chef_registration_path%>
 </div>
+
+<div class="cook">
+  <h3>I am a Cook!</h3>
+  <%= link_to "Sign Up", new_cook_registration_path%>
+</div>
+
+<h2>Already a Member? Login here!</h2>
+
+<%= form_for(:chef, :url => session_path(:chef)) do |f| %>
+  <%= f.text_field :email %>
+  <%= f.password_field :password %>
+  <%= f.submit 'Sign in' %>
+<% end %>
