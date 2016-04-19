@@ -1,6 +1,5 @@
 class SessionsController < Devise::SessionsController
   def create
-    binding.pry
     if self.resource_name == :cook
       if chef_signed_in?
         sign_out current_chef

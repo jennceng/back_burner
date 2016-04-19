@@ -22,7 +22,7 @@ feature "an authenticated chef can create a new job post" do
   let!(:chef) { FactoryGirl.create(:chef) }
   context "an authenticated chef can submit a new job post form" do
     before(:each) do
-      login(chef)
+      login_as_chef(chef)
     end
 
     scenario "successfully creates a new job post" do
@@ -58,7 +58,7 @@ feature "an authenticated chef can create a new job post" do
   context "an authenticated cook cannot submit a new job post" do
     scenario "authenticated cook cannot submit a new job post" do
       cook = FactoryGirl.create(:cook)
-      login(cook)
+      login_as_cook(cook)
 
       expect(page).to_not have_button("Create Post")
     end
