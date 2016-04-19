@@ -17,7 +17,7 @@
   chef = Chef.create(
     first_name: Faker::Name.name.split.first,
     last_name: Faker::Name.name.split.last,
-    restaurant_name: Faker::Hipster.words(3),
+    restaurant_name: Faker::Hipster.words(3).join(" "),
     address: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state,
@@ -32,7 +32,8 @@
     date: "#{Faker::Date.forward(50)}",
     start_time: "2:00 pm",
     end_time: "12:00 am",
-    wage: "$12"
+    wage: "$12",
+    description: Faker::Hipster.sentence
   )
 end
 
