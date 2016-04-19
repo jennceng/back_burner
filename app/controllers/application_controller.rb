@@ -20,15 +20,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def logged_in?
-    if current_chef
-      "chef"
-    elsif current_cook
-      "cook"
-    else
-      nil
-    end
-  end
+  # def logged_in?
+  #   if current_chef
+  #     "chef"
+  #   elsif current_cook
+  #     "cook"
+  #   else
+  #     nil
+  #   end
+  # end
 
   def after_sign_in_path_for(resource)
     posts_path
