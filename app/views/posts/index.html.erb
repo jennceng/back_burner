@@ -1,19 +1,40 @@
 <h1> Job Posts! </h1>
 
-<% @posts.each do |post| %>
-  Restaurant: <%= post.chef.restaurant_name %>
-  Address: <%= post.chef.full_address %>
-  Date: <%= post.date %>
-  Start Time: <%= post.start_time %>
-  End Time: <%= post.end_time %>
-  Hourly Wage: <%= post.wage %>
-  Description:
-    <% if post.description.blank? %>
-      None Provided
-    <% else %>
-      <%= post.description %>
-    <% end %>
-<% end %>
+<ul class="accordion" data-accordion>
+  <% @posts.each_with_index do |post| %>
+    <li class="accordion-item" data-accordion-item>
+      <a href="#"> <%= post.chef.restaurant_name %></a>
+        <div class="accordion-content" data-tab-content >
+          <table>
+            <thead>
+              <tr>
+                <th width="200">Address</th>
+                <th width="100">Date</th>
+                <th width="100">Start Time</th>
+                <th width="100">End Time</th>
+                <th width="100">Hourly Wage</th>
+                <th width="200">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= post.chef.full_address %></td>
+                <td><%= post.date %></td>
+                <td><%= post.start_time %></td>
+                <td><%= post.end_time %></td>
+                <td><%= post.wage %></td>
+                <td><% if post.description.blank? %>
+                  None Provided
+                <% else %>
+                  <%= post.description %>
+                <% end %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <% end %>
+      </li>
+</ul>
 
 <% if chef_signed_in? %>
   <%= render 'form' %>
