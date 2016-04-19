@@ -16,7 +16,7 @@ feature "an authenticated Chef can edit their account information" do
   let!(:chef) { FactoryGirl.create(:chef) }
 
   scenario "authenticated Chef successfully edits their account information" do
-    login(chef)
+    login_as_chef(chef)
     click_on "Update Information"
 
     fill_in "First Name", with: "JLaw"
@@ -27,7 +27,7 @@ feature "an authenticated Chef can edit their account information" do
   end
 
   scenario "authenticated Chef successfully edits their account information" do
-    login(chef)
+    login_as_chef(chef)
     click_on "Update Information"
 
     fill_in "Password", with: "a"
