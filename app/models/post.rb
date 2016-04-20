@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :wage, presence: true
+
+  # def selected_cook 
+  #   self.cooks.where(selected = true)
+  # end
 end

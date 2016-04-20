@@ -1,0 +1,31 @@
+<h1>Welcome back, <%= @chef.first_name %></h1>
+
+<h3>Your job posts:</h3>
+  <% @posts.each do |post| %>
+    <table>
+      <thead>
+        <tr>
+          <th width="100">Date</th>
+          <th width="100">Start Time</th>
+          <th width="100">End Time</th>
+          <th width="100">Hourly Wage</th>
+          <th width="200">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= post.date %></td>
+          <td><%= post.start_time %></td>
+          <td><%= post.end_time %></td>
+          <td><%= post.wage %></td>
+          <td><% if post.description.blank? %>
+            None Provided
+          <% else %>
+            <%= post.description %>
+          <% end %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+
+  <%= button_to "Create New Job Post", new_post_path, method: :get %>
