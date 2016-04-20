@@ -1,31 +1,25 @@
 <h1>Welcome back, <%= @chef.first_name %></h1>
 
 <h3>Your job posts:</h3>
+  <div class="row">
+    <div class="small-2 large-4 columns">Date</div>
+    <div class="small-2 large-4 columns">Start Time</div>
+    <div class="small-2 large-4 columns">End Time</div>
+    <div class="small-2 large-4 columns">Hourly Wage</div>
+    <div class="small-2 large-4 columns">Description</div>
+  </div>
   <% @posts.each do |post| %>
-    <table>
-      <thead>
-        <tr>
-          <th width="100">Date</th>
-          <th width="100">Start Time</th>
-          <th width="100">End Time</th>
-          <th width="100">Hourly Wage</th>
-          <th width="200">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= post.date %></td>
-          <td><%= post.start_time %></td>
-          <td><%= post.end_time %></td>
-          <td><%= post.wage %></td>
-          <td><% if post.description.blank? %>
-            None Provided
-          <% else %>
-            <%= post.description %>
-          <% end %></td>
-        </tr>
-      </tbody>
-    </table>
-    <% end %>
+    <div class="row">
+      <div class="small-2 large-4 columns"><%= post.date %></div>
+      <div class="small-2 large-4 columns"><%= post.start_time %></div>
+      <div class="small-2 large-4 columns"><%= post.end_time %></div>
+      <div class="small-2 large-4 columns"><%= post.wage %></div>
+      <% if post.description.blank? %>
+        <div class="small-2 large-4 columns">None Provided</div>
+      <% else %>
+        <div class="small-2 large-4 columns"><%= post.description %></div>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= button_to "Create New Job Post", new_post_path, method: :get %>

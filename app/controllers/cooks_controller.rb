@@ -3,7 +3,7 @@ class CooksController < ApplicationController
 
   def show
     @cook = Cook.find(params[:id])
-    # @signups = @cook.signups
+    @signups = @cook.signups
   end
 
   private
