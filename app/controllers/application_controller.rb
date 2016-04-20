@@ -20,22 +20,32 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def logged_in?
-  #   if current_chef
-  #     "chef"
-  #   elsif current_cook
-  #     "cook"
+  # def current_user
+  #   if resource.is_a?(Chef)
+  #     return current_chef
+  #   elsif resource.is_a?(Cook)
+  #     return current_cook
   #   else
   #     nil
   #   end
   # end
 
   def after_sign_in_path_for(resource)
-    posts_path
+    if resource.is_a?(Chef)
+      chef_path(resource)
+    end
+    if resource.is_a?(Cook)
+      posts_path
+    end
   end
 
   def after_update_path_for(resource)
-    posts_path
+    if resource.is_a?(Chef)
+      chef_path(resource)
+    end
+    if resource.is_a?(Cook)
+      posts_path
+    end
   end
 
   # def after_sign_up_path_for(resource)

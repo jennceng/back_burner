@@ -1,18 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 20.times do |i|
   chef = Chef.create(
     first_name: Faker::Name.name.split.first,
@@ -27,14 +12,16 @@
     phone_number: Faker::PhoneNumber.cell_phone,
     password: "password"
   )
-  Post.create(
-    chef: chef,
-    date: "#{Faker::Date.forward(50)}",
-    start_time: "2:00 pm",
-    end_time: "12:00 am",
-    wage: "$12",
-    description: Faker::Hipster.sentence
-  )
+  3.times do
+    Post.create(
+      chef: chef,
+      date: "#{Faker::Date.forward(50)}",
+      start_time: "2:00 pm",
+      end_time: "12:00 am",
+      wage: "$12",
+      description: Faker::Hipster.sentence
+    )
+  end
 end
 
 # Post.new(
@@ -62,7 +49,7 @@ end
 # end
 
 10.times do |i|
-  Cook.create(
+  cook = Cook.create(
     first_name: Faker::Name.name.split.first,
     last_name: Faker::Name.name.split.last,
     email: (i + 10).to_s + Faker::Internet.email,
@@ -70,4 +57,7 @@ end
     password: "password",
     description: "I have mad mad skillz",
   )
+  Post.all.each do |post|
+     Signup.create(post: post, cook: cook)
+  end
 end

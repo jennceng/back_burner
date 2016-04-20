@@ -1,15 +1,15 @@
-class ChefsController < ApplicationController
-  before_action :authenticate_chef
+class CooksController < ApplicationController
+  before_action :authenticate_cook
 
   def show
-    @chef = Chef.find(params[:id])
-    @posts = @chef.posts
+    @cook = Cook.find(params[:id])
+    # @signups = @cook.signups
   end
 
   private
 
-  def authenticate_chef
-    if current_chef.nil? || current_chef != Chef.find(params[:id])
+  def authenticate_cook
+    if current_cook.nil? || current_cook != Cook.find(params[:id])
       respond_to do |format|
         format.html { redirect_to posts_path, alert: "You cannot access that part of the website" }
         format.xml { head :forbidden }

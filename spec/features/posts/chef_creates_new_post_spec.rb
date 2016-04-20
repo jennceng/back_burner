@@ -26,6 +26,7 @@ feature "an authenticated chef can create a new job post" do
     end
 
     scenario "successfully creates a new job post" do
+      click_on "Create New Job Post"
       fill_in "Date", with: "August 8, 2016"
       fill_in "Start Time", with: "2:00 pm"
       fill_in "End Time", with: "11:00 pm"
@@ -45,6 +46,7 @@ feature "an authenticated chef can create a new job post" do
     end
 
     scenario "information provided not valid, job post not created" do
+      click_on "Create New Job Post"
       fill_in "Date", with: "August 8, 2016"
       fill_in "Start Time", with: "2:00 pm"
       fill_in "Hourly Wage", with: "$12"
@@ -60,7 +62,7 @@ feature "an authenticated chef can create a new job post" do
       cook = FactoryGirl.create(:cook)
       login_as_cook(cook)
 
-      expect(page).to_not have_button("Create Post")
+      expect(page).to_not have_button("Create New Job Post")
     end
   end
 
@@ -68,7 +70,7 @@ feature "an authenticated chef can create a new job post" do
     scenario "unauthenticated user cannot submit a new job post" do
       visit posts_path
 
-      expect(page).to_not have_button("Create Post")
+      expect(page).to_not have_button("Create New Job Post")
     end
   end
 
