@@ -9,7 +9,7 @@ class Chef < ActiveRecord::Base
     "#{address} #{city}, #{state} #{zip}"
   end
 
-  def full_name 
+  def full_name
     "#{first_name} #{last_name}"
   end
 

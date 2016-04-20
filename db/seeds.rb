@@ -34,7 +34,7 @@ end
     description: "I have mad mad skillz",
   )
 
-   Signup.create(post: Post.first, cook: cook)
+  Signup.create(post: Post.first, cook: cook)
 end
 
 FactoryGirl.create(:chef, email: "chef@gmail.com")
