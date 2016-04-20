@@ -8,7 +8,7 @@ class SignupsController < ApplicationController
     #   flash[:error] = "You have already signed up for this job!"
     # end
     current_post = Post.find(params[:post_id])
-    @signup = Signup.new(post: current_post , cook: current_cook)
+    @signup = Signup.new(post: current_post, cook: current_cook)
     if @signup.save
       flash[:success] = "You have requested this job post! Awaiting Chef's decision"
       redirect_to cook_path(current_cook)

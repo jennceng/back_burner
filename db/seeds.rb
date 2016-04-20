@@ -59,5 +59,5 @@ end
   )
   Post.all.each do |post|
      Signup.create(post: post, cook: cook)
-   end
+  end
 end
