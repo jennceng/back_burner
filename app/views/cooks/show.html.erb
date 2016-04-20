@@ -1,0 +1,31 @@
+<h1>Welcome back, <%= current_cook.first_name %></h1>
+
+<h3>Your Signups:</h3>
+<ul class="accordion" data-accordion>
+  <% @signups.each do |signup| %>
+    <li class="accordion-item" data-accordion-item>
+      <a href="#"> <%= signup.post.chef.restaurant_name %></a>
+        <div class="accordion-content" data-tab-content >
+          <div class="row">
+            <div class="small-1 columns">Address</div>
+            <div class="small-1 columns">Date</div>
+            <div class="small-1 columns">Start Time</div>
+            <div class="small-1 columns">End Time</div>
+            <div class="small-1 columns">Hourly Wage</div>
+            <div class="small-1 columns">Description</div>
+          </div>
+
+          <div class="row">
+            <div class="small-1 columns"><%= signup.post.chef.full_address %></div>
+            <div class="small-1 columns"><%= signup.post.date %></div>
+            <div class="small-1 columns"><%= signup.post.start_time %></div>
+            <div class="small-1 columns"><%= signup.post.end_time %></div>
+            <div class="small-1 columns"><%= signup.post.wage %></div>
+            <div class="small-1 columns"><%= signup.post.description %></div>
+            <div class="small-1 columns"><%= signup.decision %></div>
+          </div>
+
+        </div>
+        <% end %>
+      </li>
+</ul>

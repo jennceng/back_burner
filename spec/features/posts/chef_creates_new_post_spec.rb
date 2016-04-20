@@ -36,8 +36,6 @@ feature "an authenticated chef can create a new job post" do
 
 
       expect(page).to have_content "New job post created!"
-      expect(page).to have_content(chef.restaurant_name)
-      expect(page).to have_content(chef.full_address)
       expect(page).to have_content "August 8, 2016"
       expect(page).to have_content "2:00 pm"
       expect(page).to have_content "11:00 pm"

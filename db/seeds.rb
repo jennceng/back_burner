@@ -24,30 +24,6 @@
   end
 end
 
-# Post.new(
-#   date: "#{Faker::Date.forward(50)}",
-#   start_time: "2:00 pm",
-#   end_time: "12:00 am",
-#   wage: "$12"
-# )
-
-# Chef.all.each do |chef|
-#   Post.create (
-#     chef: chef,
-#     date: Faker::Date.forward(50),
-#     start_time: "2:00 pm",
-#     end_time: "12:00 am",
-#     wage: "$12"
-#   )
-# end
-
-# Chef.all.each do |chef|
-#   Post.all.each do |post|
-#     post.chef = chef
-#     save
-#   end
-# end
-
 10.times do |i|
   cook = Cook.create(
     first_name: Faker::Name.name.split.first,
@@ -57,7 +33,9 @@ end
     password: "password",
     description: "I have mad mad skillz",
   )
-  Post.all.each do |post|
-     Signup.create(post: post, cook: cook)
-  end
+
+  Signup.create(post: Post.first, cook: cook)
 end
+
+FactoryGirl.create(:chef, email: "chef@gmail.com")
+FactoryGirl.create(:cook, email: "cook@gmail.com")

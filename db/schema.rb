@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419202003) do
+ActiveRecord::Schema.define(version: 20160420153631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,9 @@ ActiveRecord::Schema.define(version: 20160419202003) do
   end
 
   create_table "signups", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "cook_id", null: false
+    t.integer "post_id",                      null: false
+    t.integer "cook_id",                      null: false
+    t.string  "decision", default: "Pending"
   end
 
 end

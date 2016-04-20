@@ -26,11 +26,17 @@ feature "an authenticated cook can respond to a job post" do
       login_as_cook(cook1)
     end
 
-    pending "successfully responds to a post" do
-      click_on "Sign Up for this Job"
+    scenario "successfully responds to a post" do
+      click_on "Sign Up"
 
-      expect(page).to have_content "You have requested the job!"
-      expect(page).to_not have_button "Sign Up for this Job"
+      expect(page).to have_content post.chef.full_address
+      expect(page).to have_content post.chef.restaurant_name
+      expect(page).to have_content post.start_time
+      expect(page).to have_content post.end_time
+      expect(page).to have_content post.wage
+      expect(page).to have_content post.description
+      expect(page).to have_content "Job requested! Awaiting Chef's decision"
+      expect(page).to have_content "Pending"
     end
 
     # scenario "information provided not valid, job post not created" do
