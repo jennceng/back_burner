@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :chef
-  has_many :signups
+  has_many :signups, dependent: :destroy
   has_many :cooks, through: :signups
 
   validates :chef, presence: true

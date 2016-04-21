@@ -5,11 +5,11 @@ require "rails_helper"
 #   So that my information is no longer retained by the app
 #
 #     Acceptance Criteria -
-#     [ ] On my user page I have the option to delete my account
+#     [x] On my user page I have the option to delete my account
 #     [ ] If I click delete account I am prompted for confirmation
 #     [ ] If I click no on the confirmation my account is not deleted
 #     [ ] If I click yes on the confirmation my account is deleted and I receive a message of "hope to see you again"
-#     [ ] If I delete my account I am redirected to the job post index page and have the option to Sign In / Sign Up, but not Sign Out
+#     [x] If I delete my account I am redirected to the job post index page and have the option to Sign In / Sign Up, but not Sign Out
 
 feature "authenticated Chef deletes their account" do
 
