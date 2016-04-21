@@ -17,11 +17,11 @@ require "rails_helper"
 #     Unhappy Path as an unauthenticated user of any kind:
 #     [x] If I am an unauthenticated Chef or Cook, I cannot see the option to sign up for a job posting
 
-feature "an authenticated cook can respond to a job post" do
+feature "an authenticated cook can respond to a job post", :vcr do
   let!(:post) { FactoryGirl.create(:post) }
   let!(:cook1) { FactoryGirl.create(:cook) }
   let!(:cook2) { FactoryGirl.create(:cook) }
-  let!(:chef) { FactoryGirl.create(:chef) }
+  let!(:chef2) { FactoryGirl.create(:chef) }
   context "an authenticated cook can respond to a job post" do
     before(:each) do
       login_as_cook(cook1)
@@ -44,7 +44,7 @@ feature "an authenticated cook can respond to a job post" do
 
   context "an authenticated cook can respond to a job post" do
     scenario "an authenticated chef cannot sign up for a job posting" do
-      login_as_chef(chef)
+      login_as_chef(chef2)
       visit posts_path
 
       expect(page).to_not have_button "Sign Up"
