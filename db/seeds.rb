@@ -37,5 +37,5 @@ end
   Signup.create(post: Post.first, cook: cook)
 end
 
-FactoryGirl.create(:chef, email: "chef@gmail.com")
-FactoryGirl.create(:cook, email: "cook@gmail.com")
+Chef.first.update(email: "chef@gmail.com")
+Chef.first.update(email: "cook@gmail.com")
