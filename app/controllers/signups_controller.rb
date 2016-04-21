@@ -18,11 +18,24 @@ class SignupsController < ApplicationController
   end
 
   def accept
-
+    @signup = Signup.find(params[:signup_id])
+    @signup.decision = "Accepted"
+    current_post = @signup.post
+    if @signup.save
+      current_post.update(open: false)
+      pending_signups = current_post.signups - [@signup]
+      pending_signups.each do |signup|
+        signup.decision = "Rejected"
+        signup.save
+      end
+      flash[:success] = "Cook selected! Job post now closed"
+    else
+      flash[:error] = "Uh-oh, something went wrong"
+    end
+    redirect_to chef_path(current_chef)
   end
 
   def reject
-    # binding.pry
     @signup = Signup.find(params[:signup_id])
     @signup.decision = "Rejected"
     if @signup.save
