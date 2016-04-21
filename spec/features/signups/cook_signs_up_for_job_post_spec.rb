@@ -15,7 +15,7 @@ require "rails_helper"
 #     [x] I cannot see an option to sign up for a job posting
 #
 #     Unhappy Path as an unauthenticated user of any kind:
-#     [ ] If I am an unauthenticated Chef or Cook, I cannot see the option to sign up for a job posting
+#     [x] If I am an unauthenticated Chef or Cook, I cannot see the option to sign up for a job posting
 
 feature "an authenticated cook can respond to a job post" do
   let!(:post) { FactoryGirl.create(:post) }
@@ -39,6 +39,7 @@ feature "an authenticated cook can respond to a job post" do
       expect(page).to have_content "Job requested! Awaiting Chef's decision"
       expect(page).to have_content "Pending"
     end
+
   end
 
   context "an authenticated cook can respond to a job post" do

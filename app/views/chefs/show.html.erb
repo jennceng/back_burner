@@ -21,21 +21,23 @@
       <% end %>
     </div>
     <% post.signups.each do |signup| %>
-      <div class="row">
-        <div class="small-2 large-4 columns"><%= signup.cook.full_name %></div>
-        <% if signup.cook.description.blank? %>
-          <div class="small-2 large-4 columns">None Provided</div>
-        <% else %>
-          <div class="small-2 large-4 columns"><%= signup.cook.description %></div>
+      <div id= <%= signup.cook_id %> 
+        <div class="row">
+          <div class="small-2 large-4 columns"><%= signup.cook.full_name %></div>
+          <% if signup.cook.description.blank? %>
+            <div class="small-2 large-4 columns">None Provided</div>
+          <% else %>
+            <div class="small-2 large-4 columns"><%= signup.cook.description %></div>
+          <% end %>
+          <% if signup.decision == "Pending" %>
+            <div class="small-1 columns"><%= button_to "Accept", signup_accept_path(signup), method: :post %></div>
+            <div class="small-1 columns"><%= button_to "Reject", signup_reject_path(signup), method: :post %></div>
+          <% else %>
+            <%= signup.decision %>
+          <% end %>
+          </div>
         <% end %>
-        <% if signup.decision == "Pending" %>
-          <div class="small-1 columns"><%= button_to "Accept", signup_accept_path(signup), method: :post %></div>
-          <div class="small-1 columns"><%= button_to "Reject", signup_reject_path(signup), method: :post %></div>
-        <% else %>
-          <%= signup.decision %>
-        <% end %>
-      <% end %>
-    </div>
+      </div>
   <% end %>
 
   <%= button_to "Create New Job Post", new_post_path, method: :get %>
