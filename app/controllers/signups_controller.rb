@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
     @signup = Signup.new(post: current_post, cook: current_cook)
     if @signup.save
       flash[:success] = "Job requested! Awaiting Chef's decision"
+      # current_post.chef.text_chef(@signup)
       redirect_to cook_path(current_cook)
     else
       flash[:error] = "Uh oh, something went wrong"
@@ -27,6 +28,7 @@ class SignupsController < ApplicationController
       pending_signups.each do |signup|
         signup.decision = "Rejected"
         signup.save
+        # signup.cook.text_cook(signup)
       end
       flash[:success] = "Cook selected! Job post now closed"
     else

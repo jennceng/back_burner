@@ -4,6 +4,8 @@ ruby '2.2.3'
 
 gem 'rake', '10.1.0'
 
+gem 'twilio-ruby', '~> 4.11.1'
+
 gem 'faker'
 gem 'rails', '4.2.6'
 
@@ -69,6 +71,8 @@ group :test do
   gem 'coveralls', require: false
   gem "poltergeist"
   gem 'database_cleaner'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :production do
