@@ -17,4 +17,20 @@ class SignupsController < ApplicationController
     end
   end
 
+  def accept
+
+  end
+
+  def reject
+    # binding.pry
+    @signup = Signup.find(params[:signup_id])
+    @signup.decision = "Rejected"
+    if @signup.save
+      flash[:success] = "Cook Rejected"
+    else
+      flash[:error] = "Decision not saved"
+    end
+    redirect_to chef_path(current_chef)
+  end
+
 end

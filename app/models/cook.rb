@@ -1,5 +1,5 @@
 class Cook < ActiveRecord::Base
-  has_many :signups
+  has_many :signups, dependent: :destroy
   has_many :jobs, through: :signups
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
