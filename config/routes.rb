@@ -9,5 +9,12 @@ BackBurner::Application.routes.draw do
   end
 
   resources :chefs, only: [:show]
+
   resources :cooks, only: [:show]
+
+  resources :signups do
+    post 'accept'
+    post 'reject'
+  end
+
 end

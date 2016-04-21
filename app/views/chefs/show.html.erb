@@ -28,8 +28,12 @@
         <% else %>
           <div class="small-2 large-4 columns"><%= signup.cook.description %></div>
         <% end %>
-        <div class="small-1 columns"><%= button_to "Accept" %></div>
-        <div class="small-1 columns"><%= button_to "Reject" %></div>
+        <% if signup.decision == "Pending" %>
+          <div class="small-1 columns"><%= button_to "Accept", signup_accept_path(signup), method: :post %></div>
+          <div class="small-1 columns"><%= button_to "Reject", signup_reject_path(signup), method: :post %></div>
+        <% else %>
+          <%= signup.decision %>
+        <% end %>
       <% end %>
     </div>
   <% end %>

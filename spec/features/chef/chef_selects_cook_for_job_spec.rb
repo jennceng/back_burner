@@ -37,6 +37,34 @@ feature "an authenticated Chef can edit their account information" do
 
     expect(page).to have_content cook1.first_name
     expect(page).to_not have_content cook2.first_name
+    expect(page).to have_button "Accept"
+    expect(page).to have_button "Reject"
   end
+
+  scenario "authenticated Chef successfully logs in and sees their posts and only their posts" do
+    post1 = FactoryGirl.create(:post, chef: chef1, description: "Running meat station")
+    post2 = FactoryGirl.create(:post, chef: chef2, description: "Running pasta station")
+    Signup.create(cook: cook1, post: post1)
+    Signup.create(cook: cook2, post: post2)
+
+    login_as_chef(chef1)
+    click_on "Reject"
+
+    expect(page).to have_content "Rejected"
+    expect(page).to_not have_button "Accept"
+    expect(page).to_not have_button "Reject"
+  end
+
+  # scenario "authenticated Chef successfully logs in and sees their posts and only their posts" do
+  #   post1 = FactoryGirl.create(:post, chef: chef1, description: "Running meat station")
+  #   post2 = FactoryGirl.create(:post, chef: chef2, description: "Running pasta station")
+  #   Signup.create(cook: cook1, post: post1)
+  #   Signup.create(cook: cook2, post: post2)
+  #
+  #   login_as_chef(chef1)
+  #
+  #   expect(page).to have_content cook1.first_name
+  #   expect(page).to_not have_content cook2.first_name
+  # end
 
 end
