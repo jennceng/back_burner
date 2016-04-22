@@ -79,7 +79,7 @@ feature "an authenticated Chef can edit their account information" do
     Signup.create(cook: cook2, post: post1, decision: "Accepted")
 
     login_as_cook(cook1)
-    click_on "My Signups"
+    click_on "My Page"
 
     expect(page).to have_content "Rejected"
     expect(page).to_not have_content cook2.first_name

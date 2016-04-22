@@ -17,7 +17,9 @@ feature "an authenticated Cook can edit their account information" do
 
   scenario "authenticated Cook successfully edits their account information" do
     login_as_cook(cook)
-    click_on "Update Information"
+    visit cook_path(cook)
+
+    click_on "Update Account Info"
 
     fill_in "First Name", with: "JLaw"
     fill_in "Current password", with: cook.password
@@ -28,7 +30,9 @@ feature "an authenticated Cook can edit their account information" do
 
   scenario "authenticated Cook successfully edits their account information" do
     login_as_cook(cook)
-    click_on "Update Information"
+    visit cook_path(cook)
+    
+    click_on "Update Account Info"
 
     fill_in "Password", with: "a"
     fill_in "Password confirmation", with: "a"
