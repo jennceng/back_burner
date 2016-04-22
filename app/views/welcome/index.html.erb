@@ -1,11 +1,15 @@
-<div class="small-12 medium-6 columns small-center chef">
-  <h3>I am a Chef!</h3>
-  <%= link_to "Sign Up", new_chef_registration_path%>
-  <%= link_to "Log In", new_chef_session_path%>
-</div>
+<% if !cook_signed_in? && !chef_signed_in? %>
+  <div class="small-12 medium-6 columns small-center chef">
+    <h3>I am a Chef!</h3>
+    <%= link_to "Sign Up", new_chef_registration_path%>
+    <%= link_to "Log In", new_chef_session_path%>
+  </div>
 
-<div class="small-12 medium-6 small-center columns cook">
-  <h3>I am a Cook!</h3>
-  <%= link_to "Sign Up", new_cook_registration_path%>
-  <%= link_to "Log In", new_cook_session_path%>
-</div>
+  <div class="small-12 medium-6 small-center columns cook">
+    <h3>I am a Cook!</h3>
+    <%= link_to "Sign Up", new_cook_registration_path%>
+    <%= link_to "Log In", new_cook_session_path%>
+  </div>
+<% else %>
+  <h3>Welcome back to Back Burner!</h3>
+<% end %>

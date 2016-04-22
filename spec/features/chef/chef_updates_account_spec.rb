@@ -17,7 +17,7 @@ feature "an authenticated Chef can edit their account information" do
 
   scenario "authenticated Chef successfully edits their account information" do
     login_as_chef(chef)
-    click_on "Update Information"
+    click_on "Update Account Info"
 
     fill_in "First Name", with: "JLaw"
     fill_in "Current password", with: chef.password
@@ -28,7 +28,7 @@ feature "an authenticated Chef can edit their account information" do
 
   scenario "authenticated Chef successfully edits their account information" do
     login_as_chef(chef)
-    click_on "Update Information"
+    click_on "Update Account Info"
 
     fill_in "Password", with: "a"
     fill_in "Password confirmation", with: "a"

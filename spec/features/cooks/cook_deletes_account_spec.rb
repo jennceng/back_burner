@@ -15,8 +15,11 @@ feature "authenticated Cook deletes their account" do
 
   scenario "Cook successfully deletes account" do
     cook = FactoryGirl.create(:cook)
+
     login_as_cook(cook)
-    click_on "Update Information"
+    visit cook_path(cook)
+
+    click_on "Update Account Info"
     click_button "Cancel my account"
 
     expect(page).to have_content "Bye! Your account has been successfully cancelled. We hope to see you again soon."
