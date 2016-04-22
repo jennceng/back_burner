@@ -21,7 +21,7 @@ require "rails_helper"
 #   Unhappy Path as an unauthenticated user of any kind:
 #   [ ] If I am an unauthenticated Chef or Cook, I cannot see the list of cook candidates who signed up for a job posting
 
-feature "an authenticated Chef can edit their account information" do
+feature "an authenticated Chef can pick a cook for their job post" do
   let!(:chef1) { FactoryGirl.create(:chef) }
   let!(:chef2) { FactoryGirl.create(:chef) }
   let!(:cook1) { FactoryGirl.create(:cook, first_name: "Lindsay") }
@@ -51,6 +51,7 @@ feature "an authenticated Chef can edit their account information" do
     login_as_chef(chef1)
     click_on "Reject"
 
+    expect(FakeSMS.messages.first.body).to have_content "You have been rejected for a job"
     expect(page).to have_content "Rejected"
     expect(page).to_not have_button "Accept"
     expect(page).to_not have_button "Reject"
@@ -79,22 +80,12 @@ feature "an authenticated Chef can edit their account information" do
     Signup.create(cook: cook2, post: post1, decision: "Accepted")
 
     login_as_cook(cook1)
-    click_on "My Page"
+    within(".off-canvas") do
+      click_on "My Signups"
+    end
 
     expect(page).to have_content "Rejected"
     expect(page).to_not have_content cook2.first_name
   end
-
-  # scenario "authenticated Chef successfully logs in and sees their posts and only their posts" do
-  #   post1 = FactoryGirl.create(:post, chef: chef1, description: "Running meat station")
-  #   post2 = FactoryGirl.create(:post, chef: chef2, description: "Running pasta station")
-  #   Signup.create(cook: cook1, post: post1)
-  #   Signup.create(cook: cook2, post: post2)
-  #
-  #   login_as_chef(chef1)
-  #
-  #   expect(page).to have_content cook1.first_name
-  #   expect(page).to_not have_content cook2.first_name
-  # end
 
 end

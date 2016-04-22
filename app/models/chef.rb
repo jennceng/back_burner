@@ -16,6 +16,7 @@ class Chef < ActiveRecord::Base
   def text_chef(signup)
     number = phone_number
     twilio_client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+    binding.pry
     twilio_client.account.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
       to: number,

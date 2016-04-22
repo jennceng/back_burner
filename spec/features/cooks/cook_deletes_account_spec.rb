@@ -19,7 +19,9 @@ feature "authenticated Cook deletes their account" do
     login_as_cook(cook)
     visit cook_path(cook)
 
-    click_on "Update Account Info"
+    within(".off-canvas") do
+      click_on "Update Account Info"
+    end
     click_button "Cancel my account"
 
     expect(page).to have_content "Bye! Your account has been successfully cancelled. We hope to see you again soon."

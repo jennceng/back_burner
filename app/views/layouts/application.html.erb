@@ -8,46 +8,103 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="top-bar">
-    <div class="top-bar-title">
-      <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
-        <button class="menu-icon dark" type="button" data-toggle></button>
-      </span>
-      <strong>Back Burner</strong>
-    </div>
-    <div id="responsive-menu">
-      <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <% if chef_signed_in? %>
-            <li><%= link_to "My Page", chef_path(current_chef) %></li>
-            <li><%= link_to "Browse Posts", posts_path %></li>
-            <li><%= link_to "Sign Out", destroy_chef_session_path, method: :delete %></li>
-          <% end %>
-          <% if cook_signed_in? %>
-          <li><%= link_to "My Page", cook_path(current_cook) %></li>
-          <li><%= link_to "Browse Posts", posts_path %></li>
-          <li><%= link_to "Sign Out", destroy_cook_session_path, method: :delete %></li>
-          <% end %>
-        </ul>
+
+    <!-- <div class="top-bar">
+      <div class="top-bar-title">
+        <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+          <button class="menu-icon dark" type="button" data-toggle></button>
+        </span>
+        <strong>Back Burner</strong>
       </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><input type="search" placeholder="Search"></li>
-          <li><button type="button" class="button">Search</button></li>
-        </ul>
+      <div id="responsive-menu">
+        <div class="top-bar-right">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <% if chef_signed_in? %>
+              <li><%= link_to "My Page", chef_path(current_chef) %></li>
+              <li><%= link_to "Browse Posts", posts_path %></li>
+              <li><%= link_to "Sign Out", destroy_chef_session_path, method: :delete %></li>
+            <% end %>
+            <% if cook_signed_in? %>
+              <li><%= link_to "My Page", cook_path(current_cook) %></li>
+              <li><%= link_to "Browse Posts", posts_path %></li>
+              <li><%= link_to "Sign Out", destroy_cook_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
+    </div> -->
+
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+        <!-- off-canvas title bar for 'small' screen -->
+        <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+          <div class="title-bar-left">
+            <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+            <span class="title-bar-title">Back Burner</span>
+          </div>
+        </div>
+
+        <!-- off-canvas left menu -->
+        <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+          <ul class="vertical dropdown menu" data-dropdown-menu>
+            <% if chef_signed_in? %>
+              <li><%= link_to "My Job Posts", chef_path(current_chef) %></li>
+              <li><%= link_to "Browse Posts", posts_path %></li>
+              <li><%= link_to "Update Account Info", edit_chef_registration_path %></li>
+              <li><%= link_to "Sign Out", destroy_chef_session_path, method: :delete %></li>
+            <% end %>
+            <% if cook_signed_in? %>
+              <li><%= link_to "My Signups", cook_path(current_cook) %></li>
+              <li><%= link_to "Browse Posts", posts_path %></li>
+              <li><%= link_to "Update Account Info", edit_cook_registration_path %></li>
+              <li><%= link_to "Sign Out", destroy_cook_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <!-- "wider" top-bar menu for 'medium' and up -->
+        <div id="widemenu" class="top-bar">
+          <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+              <li class="menu-text">Back Burner</li>
+            </ul>
+          </div>
+          <div class="top-bar-right">
+            <ul class="menu">
+              <% if chef_signed_in? %>
+                <li><%= link_to "My Job Page", chef_path(current_chef) %></li>
+                <li><%= link_to "Browse Posts", posts_path %></li>
+                <li><%= link_to "Update Account Info", edit_chef_registration_path %></li>
+                <li><%= link_to "Sign Out", destroy_chef_session_path, method: :delete %></li>
+              <% end %>
+              <% if cook_signed_in? %>
+                <li><%= link_to "My Signups", cook_path(current_cook) %></li>
+                <li><%= link_to "Browse Posts", posts_path %></li>
+                <li><%= link_to "Update Account Info", edit_cook_registration_path %></li>
+                <li><%= link_to "Sign Out", destroy_cook_session_path, method: :delete %></li>
+
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <!-- original content goes in this container -->
+        <div class="off-canvas-content" data-off-canvas-content>
+          <div class="row column">
+            <% flash.each do |name, msg| %>
+            <% if msg.is_a?(String) %>
+            <%= content_tag :div, msg, :class => "flash_#{name}" %>
+            <% end %>
+            <% end %>
+          </div>
+          <div class="small-12 columns small-centered">
+            <%= yield %>
+          </div>
+          </div>
+        </div>
+
     <div>
-      <% flash.each do |name, msg| %>
-        <% if msg.is_a?(String) %>
-          <%= content_tag :div, msg, :class => "flash_#{name}" %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="small-12 columns small-centered">
-      <%= yield %>
-    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
