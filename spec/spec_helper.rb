@@ -17,6 +17,14 @@ RSpec.configure do |config|
     click_on "Log in"
   end
 
+  config.before :each, type: :feature do
+    FakeSMS.messages = []
+  end
+
+  config.before(:each) do
+    stub_const("Twilio::REST::Client", FakeSMS)
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
