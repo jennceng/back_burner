@@ -42,6 +42,7 @@ class SignupsController < ApplicationController
     @signup.decision = "Rejected"
     if @signup.save
       flash[:success] = "Cook Rejected"
+      @signup.cook.text_cook(@signup)
     else
       flash[:error] = "Decision not saved"
     end
