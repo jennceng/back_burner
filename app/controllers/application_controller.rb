@@ -42,7 +42,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_update_path_for(resource)
-    binding.pry
     if resource.is_a?(Chef)
       chef_path(resource)
     end
